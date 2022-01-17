@@ -1,23 +1,31 @@
-//
-//  CustomTableViewCell.swift
-//  customCell
-//
-//  Created by Wa ibra. on 01/03/1443 AH.
-//
+protocol CustomeCellDelegate: AnyObject {
+    func addToTotal (amount: Int)
+    func subtractTotal (amount: Int)
+}
+
 
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var delegate: CustomeCellDelegate?
+    var powerNumber: Int?
+    @IBOutlet weak var powerLabel: UILabel!
+    
+    @IBAction func plusButtonPressed(_ sender: UIButton) {
+        if let number = powerNumber {
+            delegate?.addToTotal(amount: number)
+            
+        }
+        
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func minusButtonPressed(_ sender: UIButton) {
+        if let number = powerNumber {
+            delegate?.subtractTotal(amount: number)
+        
     }
+    
 
-}
+    }}
